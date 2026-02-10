@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Valentine 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="">
+
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            font-family: Arial, sans-serif;
+        }
+
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 360px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        img {
+            width: 120px;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            color: #e91e63;
+        }
+
+        p {
+            color: #555;
+        }
+
+        .zone {
+            position: relative;
+            height: 120px;
+            margin-top: 25px;
+        }
+
+        button {
+            padding: 12px 22px;
+            font-size: 16px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .yes {
+            background: #e91e63;
+            color: white;
+        }
+
+        .no {
+            background: #ddd;
+            color: #333;
+            position: absolute;
+            transition: left 0.4s linear, top 0.4s linear;
+            touch-action: none;
+        }
+
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="https://media.tenor.com/0AVbKGY_MxMAAAAC/stitch-love.gif" alt="Love">
+
+    <h1>Coucou toi 💕</h1>
+    <p>Veux-tu être ma Valentine le 14 février 💌</p>
+
+    <div class="zone" id="zone">
+        <button class="yes" onclick="sayYes()">Oui 😍</button>
+        <button class="no" id="noBtn">Non 😅</button>
+    </div>
+
+    <div class="message" id="response"></div>
+    <p style="margin-top:15px; font-size:12px; color:#999;">
+  Créé par <strong>Yvann Guiro</strong> 💻 le best
+</p>
+
+</div>
+
+<script>
+    function sayYes() {
+        const msg = document.getElementById("response");
+        msg.style.display = "block";
+        msg.style.color = "#e91e63";
+        msg.innerHTML = "Yaaay 😍💖 Mission réussie !";
+    }
+
+    const noBtn = document.getElementById("noBtn");
+    const zone = document.getElementById("zone");
+
+    let speed = 0.4;
+
+    function moveNo() {
+        speed = Math.max(0.05, speed - 0.05);
+        noBtn.style.transition = `left ${speed}s linear, top ${speed}s linear`;
+
+        const maxX = zone.clientWidth - noBtn.offsetWidth;
+        const maxY = zone.clientHeight - noBtn.offsetHeight;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
+
+    // PC
+    noBtn.addEventListener("mouseover", moveNo);
+
+    // Mobile
+    noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        moveNo();
+    });
+</script>
+
+</body>
+</html>
